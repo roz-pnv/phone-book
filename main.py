@@ -18,11 +18,13 @@ def main():
             phone = input("New phone (leave empty if no change): ")
             email = input("New email (leave empty if no change): ")
 
-            new_contact.edit_contact(contacts, name, phone if phone else None, email if email else None)
+            new_contact.edit_contact(name, phone if phone else None, email if email else None)
 
         elif action == 'delete':
             name = input("Name of contact to delete: ")
-            contact_book.delete_contact(contacts, name)
+
+            new_contact.delete_contact(name)
+            
         elif action == 'show':
             contact_book.show_contacts(contacts)
         elif action == 'save':

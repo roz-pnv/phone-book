@@ -19,7 +19,7 @@ class  contact_book():
         if not self.check_email_address(self.email):
             print("Invalid email address!")
             return
-        self.contacts.append(dict(name=self.name, phone=self.phone, email=self.email))
+        self.contacts.append(dict(name=self.name, phone=self.phone_number, email=self.email))
         
 
     def edit_contact(self, name, phone=None, email=None):
@@ -34,8 +34,15 @@ class  contact_book():
         print("Contact not found!")
 
 
-    def delete_contact(self):
-        pass 
+    def delete_contact(self, name):
+        for l in self.contacts:
+            if l['name'] == name:
+                self.contacts.remove(l)
+                print("Contact deleted.")
+                return
+            
+        print("Contact not found!")
+
 
 
     def show_contact(self):
