@@ -1,6 +1,6 @@
 #contact book classes
-
 import re 
+import os
 import json
 
 class  contact_book():
@@ -44,19 +44,44 @@ class  contact_book():
         print("Contact not found!")
 
 
+    def search_contact(self, name):
+        for l in self.contacts:
+            if l['name'] == name:
+                print(l)
+                return
+            
+        print("Contact not found!")
 
-    def show_contact(self):
-        pass 
+
+    def show_contacts(self):
+        for key, value in enumerate(self.sort_contacts()):
+            print(f'{key+1} ', end=" ")
+            for k,v in value.items():
+                print(f'{k}: {v}', end="  ")
+            print("\n")
 
 
-    def save_contact(self):
-        pass 
+    def sort_contacts(self):
+        self.contacts = sorted(self.contacts, key=lambda x: x['name'])
+        return self.contacts
 
-    def load_from_file(filename='contacts.json'):
+    def save_to_file(self):
+        script_dir = os.path.dirname(__file__)
+        file_path = os.path.join(script_dir, 'contacts.json')
+        with open(file_path, 'w') as f:
+            json.dump(self.sort_contacts(), f, indent=4)
+
+
+    def load_from_file(self):
         try:
-            json.loads('')
+            script_dir = os.path.dirname(__file__)
+            file_path = os.path.join(script_dir, 'contacts.json')
+            with open(file_path, 'r') as f:
+                data = json.load(f)
+                for l in data:
+                    self.contacts.append(l)
         except json.JSONDecodeError:
-            print()
+            return 
 
 
     @staticmethod
