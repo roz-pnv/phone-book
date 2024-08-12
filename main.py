@@ -1,5 +1,4 @@
 #main 
-
 from phone_book import contact_book
 
 def main():
@@ -10,12 +9,17 @@ def main():
             name = input("Name: ")
             phone = input("Phone: ")
             email = input("Email: ")
-            contact_book.add_contact(contacts, name, phone, email)
+
+            new_contact = contact_book(name, phone, email)
+            new_contact.add_contact()
+
         elif action == 'edit':
             name = input("Name of contact to edit: ")
             phone = input("New phone (leave empty if no change): ")
             email = input("New email (leave empty if no change): ")
-            contact_book.edit_contact(contacts, name, phone if phone else None, email if email else None)
+
+            new_contact.edit_contact(contacts, name, phone if phone else None, email if email else None)
+
         elif action == 'delete':
             name = input("Name of contact to delete: ")
             contact_book.delete_contact(contacts, name)

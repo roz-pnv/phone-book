@@ -3,29 +3,36 @@
 import re 
 import json
 
-class contact():
+class  contact_book():
+    contacts = []
+
     def __init__(self, name: str, phone_number: int, email_address: str):
         self.name = name
         self.phone_number = phone_number
         self.email = email_address
-
-
-class  contact_book():
-    def __init__(self):
-        self.contacts = {}
-
-    def add_contact(self, name: str, phone_number: int, email_address: str):
-        if not self.check_phone_number(phone_number):
-            print("Invalid phone number!")
-            return
-        if not self.check_email_address(email_address):
-            print("Invalid email address!")
-            return
-        self.contacts[name]=contact(name, phone_number, email_address)
         
 
-    def edit_contact(self):
-        pass
+    def add_contact(self):
+        if not self.check_phone_number(self.phone_number):
+            print("Invalid phone number!")
+            return
+        if not self.check_email_address(self.email):
+            print("Invalid email address!")
+            return
+        self.contacts.append(dict(name=self.name, phone=self.phone, email=self.email))
+        
+
+    def edit_contact(self, name, phone=None, email=None):
+        for i in self.contacts:
+            if i['name'] == name:
+                if phone and self.check_phone_number(phone):
+                    i['phone'] = phone
+                if email and self.check_email_address(email):
+                    i['email']= email
+                return 
+
+        print("Contact not found!")
+
 
     def delete_contact(self):
         pass 
