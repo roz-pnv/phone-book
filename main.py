@@ -24,7 +24,7 @@ def main():
             new_contact.delete_contact(name)
 
         elif action == 'search':
-            name = input("Name of contact to delete: ")
+            name = input("Name of contact to search: ")
             new_contact.search_contact(name)
             
         elif action == 'show':

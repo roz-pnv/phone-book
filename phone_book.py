@@ -47,7 +47,9 @@ class  contact_book():
     def search_contact(self, name):
         for l in self.contacts:
             if l['name'] == name:
-                print(l)
+                for k,v in l.items():
+                    print(f'{k}: {v}', end="  ")
+                print("\n")
                 return
             
         print("Contact not found!")
@@ -64,6 +66,7 @@ class  contact_book():
     def sort_contacts(self):
         self.contacts = sorted(self.contacts, key=lambda x: x['name'])
         return self.contacts
+
 
     def save_to_file(self):
         script_dir = os.path.dirname(__file__)
@@ -96,9 +99,4 @@ class  contact_book():
         if not re.match(r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}$', str(phone_number)):
             return False
         return True
-    
-
-
-
-
 
