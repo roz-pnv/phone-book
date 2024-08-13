@@ -10,6 +10,7 @@ def main():
             name = input("Name: ")
             phone = input("Phone: ")
             email = input("Email: ")
+
             new_contact = contact_book(name, phone, email)
             new_contact.add_contact()
 
@@ -17,6 +18,7 @@ def main():
             name = input("Name of contact to edit: ")
             phone = input("New phone (leave empty if no change): ")
             email = input("New email (leave empty if no change): ")
+            
             new_contact.edit_contact(name, phone if phone else None, email if email else None)
 
         elif action == 'delete':
@@ -32,12 +34,13 @@ def main():
 
         elif action == 'sort':
             new_contact.sort_contacts()
+            print("Your contact list sorted successfully")
 
         elif action == 'save':
             new_contact.save_to_file()
 
         elif action == 'exit':
-            contact_book.save_to_file()
+            new_contact.save_to_file()
             break
         
         else:
