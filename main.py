@@ -16,10 +16,12 @@ def main():
 
         elif action == 'edit':
             name = input("Name of contact to edit: ")
+
+            new_name = input("New name (leave empty if no change): ")
             phone = input("New phone (leave empty if no change): ")
             email = input("New email (leave empty if no change): ")
-            
-            new_contact.edit_contact(name, phone if phone else None, email if email else None)
+
+            new_contact.edit_contact(name,new_name if new_name else None, phone if phone else None, email if email else None)
 
         elif action == 'delete':
             name = input("Name of contact to delete: ")

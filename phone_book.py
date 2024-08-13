@@ -22,9 +22,11 @@ class  contact_book():
         self.contacts.append(dict(name=self.name, phone=self.phone_number, email=self.email))
         
 
-    def edit_contact(self, name, phone=None, email=None):
+    def edit_contact(self, name, new_name=None,phone=None, email=None):
         for i in self.contacts:
             if i['name'] == name:
+                if new_name != None:
+                    i['name'] = new_name
                 if phone and self.check_phone_number(phone):
                     i['phone'] = phone
                 if email and self.check_email_address(email):
